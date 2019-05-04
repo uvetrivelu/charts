@@ -118,8 +118,8 @@ alertmanager:
   tolerations: []
     # - key: "key"
     #   operator: "Equal|Exists"
-    #   value: "value"
-    #   effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
+  #   value: "value"
+  #   effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
 
   ## Node labels for alertmanager pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
@@ -215,8 +215,8 @@ alertmanager:
     #   cpu: 10m
     #   memory: 32Mi
     # requests:
-    #   cpu: 10m
-    #   memory: 32Mi
+  #   cpu: 10m
+  #   memory: 32Mi
 
   ## Security context to be added to alertmanager pods
   ##
@@ -271,8 +271,8 @@ configmapReload:
     # - name: prometheus-alerts
     #   mountPath: /etc/alerts.d
     #   subPath: ""
-    #   configMap: prometheus-alerts
-    #   readOnly: true
+  #   configMap: prometheus-alerts
+  #   readOnly: true
 
 
   ## configmap-reload resource requests and limits
@@ -332,8 +332,8 @@ kubeStateMetrics:
   tolerations: []
     # - key: "key"
     #   operator: "Equal|Exists"
-    #   value: "value"
-    #   effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
+  #   value: "value"
+  #   effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
 
   ## Node labels for kube-state-metrics pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
@@ -357,8 +357,8 @@ kubeStateMetrics:
     #   cpu: 10m
     #   memory: 16Mi
     # requests:
-    #   cpu: 10m
-    #   memory: 16Mi
+  #   cpu: 10m
+  #   memory: 16Mi
 
   ## Security context to be added to kube-state-metrics pods
   ##
@@ -419,8 +419,8 @@ nodeExporter:
       ## Ref: https://kubernetes.io/docs/concepts/policy/pod-security-policy/#sysctl
       ##
       # seccomp.security.alpha.kubernetes.io/allowedProfileNames: '*'
-      # seccomp.security.alpha.kubernetes.io/defaultProfileName: 'docker/default'
-      # apparmor.security.beta.kubernetes.io/defaultProfileName: 'runtime/default'
+    # seccomp.security.alpha.kubernetes.io/defaultProfileName: 'docker/default'
+    # apparmor.security.beta.kubernetes.io/defaultProfileName: 'runtime/default'
 
   ## node-exporter priorityClassName
   ##
@@ -440,14 +440,14 @@ nodeExporter:
   extraHostPathMounts: []
     # - name: textfile-dir
     #   mountPath: /srv/txt_collector
-    #   hostPath: /var/lib/node-exporter
-    #   readOnly: true
+  #   hostPath: /var/lib/node-exporter
+  #   readOnly: true
 
   extraConfigmapMounts: []
     # - name: certs-configmap
     #   mountPath: /prometheus
-    #   configMap: certs-configmap
-    #   readOnly: true
+  #   configMap: certs-configmap
+  #   readOnly: true
 
   ## Node tolerations for node-exporter scheduling to nodes with taints
   ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
@@ -455,8 +455,8 @@ nodeExporter:
   tolerations: []
     # - key: "key"
     #   operator: "Equal|Exists"
-    #   value: "value"
-    #   effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
+  #   value: "value"
+  #   effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
 
   ## Node labels for node-exporter pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
@@ -480,13 +480,13 @@ nodeExporter:
     #   cpu: 200m
     #   memory: 50Mi
     # requests:
-    #   cpu: 100m
-    #   memory: 30Mi
+  #   cpu: 100m
+  #   memory: 30Mi
 
   ## Security context to be added to node-exporter pods
   ##
   securityContext: {}
-    # runAsUser: 0
+  # runAsUser: 0
 
   service:
     annotations:
@@ -590,15 +590,15 @@ server:
     # - name: certs-dir
     #   mountPath: /etc/kubernetes/certs
     #   subPath: ""
-    #   hostPath: /etc/kubernetes/certs
-    #   readOnly: true
+  #   hostPath: /etc/kubernetes/certs
+  #   readOnly: true
 
   extraConfigmapMounts: []
     # - name: certs-configmap
     #   mountPath: /prometheus
     #   subPath: ""
-    #   configMap: certs-configmap
-    #   readOnly: true
+  #   configMap: certs-configmap
+  #   readOnly: true
 
   ## Additional Prometheus server Secret mounts
   # Defines additional mounts with secrets. Secrets must be manually created in the namespace.
@@ -606,8 +606,8 @@ server:
     # - name: secret-files
     #   mountPath: /etc/secrets
     #   subPath: ""
-    #   secretName: prom-secret-files
-    #   readOnly: true
+  #   secretName: prom-secret-files
+  #   readOnly: true
 
   ## ConfigMap override where fullname is {{.Release.Name}}-{{.Values.server.configMapOverrideName}}
   ## Defining configMapOverrideName will cause templates/server-configmap.yaml
@@ -618,12 +618,12 @@ server:
   ingress:
     ## If true, Prometheus server Ingress will be created
     ##
-    enabled: false
+    enabled: true
 
     ## Prometheus server Ingress annotations
     ##
-    annotations: {}
-    #   kubernetes.io/ingress.class: nginx
+    annotations:
+      kubernetes.io/ingress.class: nginx
     #   kubernetes.io/tls-acme: 'true'
 
     ## Prometheus server Ingress additional labels
@@ -633,8 +633,8 @@ server:
     ## Prometheus server Ingress hostnames with optional path
     ## Must be provided if Ingress is enabled
     ##
-    hosts: []
-    #   - prometheus.domain.com
+    hosts:
+      - prometheus-dev.altruistnet.tech
     #   - domain.com/prometheus
 
     ## Prometheus server Ingress TLS configuration
@@ -655,8 +655,8 @@ server:
   tolerations: []
     # - key: "key"
     #   operator: "Equal|Exists"
-    #   value: "value"
-    #   effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
+  #   value: "value"
+  #   effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
 
   ## Node labels for Prometheus server pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
@@ -719,7 +719,7 @@ server:
   ## Annotations to be added to Prometheus server pods
   ##
   podAnnotations: {}
-    # iam.amazonaws.com/role: prometheus
+  # iam.amazonaws.com/role: prometheus
 
   ## Use a StatefulSet if replicaCount needs to be greater than 1 (see below)
   ##
@@ -749,8 +749,8 @@ server:
     #   cpu: 500m
     #   memory: 512Mi
     # requests:
-    #   cpu: 500m
-    #   memory: 512Mi
+  #   cpu: 500m
+  #   memory: 512Mi
 
   ## Security context to be added to server pods
   ##
@@ -836,8 +836,8 @@ pushgateway:
   tolerations: []
     # - key: "key"
     #   operator: "Equal|Exists"
-    #   value: "value"
-    #   effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
+  #   value: "value"
+  #   effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
 
   ## Node labels for pushgateway pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
@@ -858,8 +858,8 @@ pushgateway:
     #   cpu: 10m
     #   memory: 32Mi
     # requests:
-    #   cpu: 10m
-    #   memory: 32Mi
+  #   cpu: 10m
+  #   memory: 32Mi
 
   ## Security context to be added to push-gateway pods
   ##
@@ -930,14 +930,28 @@ pushgateway:
 ##
 alertmanagerFiles:
   alertmanager.yml:
-    global: {}
-      # slack_api_url: ''
+    global:
+      resolve_timeout: 5m
+      slack_api_url: "https://hooks.slack.com/services/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"
 
     receivers:
       - name: default-receiver
-        # slack_configs:
-        #  - channel: '@you'
-        #    send_resolved: true
+        slack_configs:
+          - channel: '#k8-alert'
+            send_resolved: true
+            username: '{{ template "slack.default.username" . }}'
+            color: '{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}'
+            title: '{{ template "slack.default.title" . }}'
+            title_link: '{{ template "slack.default.titlelink" . }}'
+            pretext: '{{ .CommonAnnotations.summary }}'
+            text: |-
+              {{ range .Alerts }}
+                 *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+                *Description:* {{ .Annotations.description }}
+                *Details:*
+                {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+                {{ end }}
+              {{ end }}
 
     route:
       group_wait: 10s
@@ -951,20 +965,107 @@ serverFiles:
 
   ## Alerts configuration
   ## Ref: https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
-  alerts: {}
-  # groups:
-  #   - name: Instances
-  #     rules:
-  #       - alert: InstanceDown
-  #         expr: up == 0
-  #         for: 5m
-  #         labels:
-  #           severity: page
-  #         annotations:
-  #           description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes.'
-  #           summary: 'Instance {{ $labels.instance }} down'
+  alerts:
+    groups:
+      - name: Deployment
+        rules:
+            - alert: Deployment at 0 Replicas
+              annotations:
+                summary: Deployment {{$labels.deployment}} in {{$labels.namespace}} is currently having no pods running
+              expr: |
+                sum(kube_deployment_status_replicas{pod_template_hash=""}) by (deployment,namespace)  < 1
+              for: 1m
+              labels:
+                team: devops
 
-  rules: {}
+            - alert: HPA Scaling Limited
+              annotations:
+                summary: HPA named {{$labels.hpa}} in {{$labels.namespace}} namespace has reached scaling limited state
+              expr: |
+                (sum(kube_hpa_status_condition{condition="ScalingLimited",status="true"}) by (hpa,namespace)) == 1
+              for: 1m
+              labels:
+                team: devops
+
+            - alert: HPA at MaxCapacity
+              annotations:
+                summary: HPA named {{$labels.hpa}} in {{$labels.namespace}} namespace is running at Max Capacity
+              expr: |
+                ((sum(kube_hpa_spec_max_replicas) by (hpa,namespace)) - (sum(kube_hpa_status_current_replicas) by (hpa,namespace))) == 0
+              for: 1m
+              labels:
+                team: devops
+
+      - name: Pods
+        rules:
+          - alert: Container restarted
+            annotations:
+              summary: Container named {{$labels.container}} in {{$labels.pod}} in {{$labels.namespace}} was restarted
+            expr: |
+              sum(increase(kube_pod_container_status_restarts_total{namespace!="kube-system",pod_template_hash=""}[1m])) by (pod,namespace,container) > 0
+            for: 0m
+            labels:
+              team: dev
+
+          - alert: High Memory Usage of Container
+            annotations:
+              summary: Container named {{$labels.container}} in {{$labels.pod}} in {{$labels.namespace}} is using more than 75% of Memory Limit
+            expr: |
+              ((( sum(container_memory_usage_bytes{image!="",container_name!="POD", namespace!="kube-system"}) by (namespace,container_name,pod_name)  / sum(container_spec_memory_limit_bytes{image!="",container_name!="POD",namespace!="kube-system"}) by (namespace,container_name,pod_name) ) * 100 ) < +Inf ) > 75
+            for: 5m
+            labels:
+              team: dev
+
+          - alert: High CPU Usage of Container
+            annotations:
+              summary: Container named {{$labels.container}} in {{$labels.pod}} in {{$labels.namespace}} is using more than 75% of CPU Limit
+            expr: |
+              ((sum(irate(container_cpu_usage_seconds_total{image!="",container_name!="POD", namespace!="kube-system"}[30s])) by (namespace,container_name,pod_name) / sum(container_spec_cpu_quota{image!="",container_name!="POD", namespace!="kube-system"} / container_spec_cpu_period{image!="",container_name!="POD", namespace!="kube-system"}) by (namespace,container_name,pod_name) ) * 100)  > 75
+            for: 5m
+            labels:
+              team: dev
+
+      - name: Nodes
+        rules:
+          - alert: High Node Memory Usage
+            annotations:
+              summary: Node {{$labels.kubernetes_io_hostname}} has more than 80% memory used. Plan Capcity
+            expr: |
+              (sum (container_memory_working_set_bytes{id="/",container_name!="POD"}) by (kubernetes_io_hostname) / sum (machine_memory_bytes{}) by (kubernetes_io_hostname) * 100) > 80
+            for: 5m
+            labels:
+              team: devops
+
+          - alert: High Node CPU Usage
+            annotations:
+              summary: Node {{$labels.kubernetes_io_hostname}} has more than 80% allocatable cpu used. Plan Capacity.
+            expr: |
+              (sum(rate(container_cpu_usage_seconds_total{id="/", container_name!="POD"}[1m])) by (kubernetes_io_hostname) / sum(machine_cpu_cores) by (kubernetes_io_hostname)  * 100) > 80
+            for: 5m
+            labels:
+              team: devops
+
+          - alert: High Node Disk Usage
+            annotations:
+              summary: Node {{$labels.kubernetes_io_hostname}} has more than 85% disk used. Plan Capacity.
+            expr: |
+              (sum(container_fs_usage_bytes{device=~"^/dev/[sv]d[a-z][1-9]$",id="/",container_name!="POD"}) by (kubernetes_io_hostname) / sum(container_fs_limit_bytes{container_name!="POD",device=~"^/dev/[sv]d[a-z][1-9]$",id="/"}) by (kubernetes_io_hostname)) * 100 > 85
+            for: 5m
+            labels:
+              team: devops
+
+      - name: Instances
+        rules:
+          - alert: InstanceDown
+            expr: up == 0
+            for: 5m
+            labels:
+              severity: page
+            annotations:
+              description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes.'
+              summary: 'Instance {{ $labels.instance }} down'
+
+  #  rules: {}
 
   prometheus.yml:
     rule_files:
@@ -975,7 +1076,7 @@ serverFiles:
       - job_name: prometheus
         static_configs:
           - targets:
-            - localhost:9090
+              - localhost:9090
 
       # A scrape configuration for running Prometheus on a Kubernetes cluster.
       # This uses separate scrape configs for cluster components (i.e. API server, node)
@@ -1230,20 +1331,20 @@ serverFiles:
 # must be a string so you have to add a | after extraScrapeConfigs:
 # example adds prometheus-blackbox-exporter scrape config
 extraScrapeConfigs:
-  # - job_name: 'prometheus-blackbox-exporter'
-  #   metrics_path: /probe
-  #   params:
-  #     module: [http_2xx]
-  #   static_configs:
-  #     - targets:
-  #       - https://example.com
-  #   relabel_configs:
-  #     - source_labels: [__address__]
-  #       target_label: __param_target
-  #     - source_labels: [__param_target]
-  #       target_label: instance
-  #     - target_label: __address__
-  #       replacement: prometheus-blackbox-exporter:9115
+# - job_name: 'prometheus-blackbox-exporter'
+#   metrics_path: /probe
+#   params:
+#     module: [http_2xx]
+#   static_configs:
+#     - targets:
+#       - https://example.com
+#   relabel_configs:
+#     - source_labels: [__address__]
+#       target_label: __param_target
+#     - source_labels: [__param_target]
+#       target_label: instance
+#     - target_label: __address__
+#       replacement: prometheus-blackbox-exporter:9115
 
 networkPolicy:
   ## Enable creation of NetworkPolicy resources.
